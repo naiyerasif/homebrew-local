@@ -1,11 +1,11 @@
 class Maven < Formula
   desc "Java-based project management"
   homepage "https://maven.apache.org/"
-  url "https://www.apache.org/dyn/closer.lua?path=maven/maven-3/3.9.14/binaries/apache-maven-3.9.14-bin.tar.gz"
-  mirror "https://archive.apache.org/dist/maven/maven-3/3.9.14/binaries/apache-maven-3.9.14-bin.tar.gz"
-  sha256 "126ed3233e569bd0add9e889d226139acd3de9005876a01fe6108fbf4246f515"
+  url "https://www.apache.org/dyn/closer.lua?path=maven/maven-3/3.9.16/binaries/apache-maven-3.9.16-bin.tar.gz"
+  mirror "https://archive.apache.org/dist/maven/maven-3/3.9.16/binaries/apache-maven-3.9.16-bin.tar.gz"
+  sha256 "80ffca22aed9e8b9713a232f3394fd81d7f20322df75efdb2b047dbd3e3a23bb"
   license "Apache-2.0"
-	compatibility_version 1
+  compatibility_version 1
 
   livecheck do
     url "https://maven.apache.org/download.cgi"
@@ -13,7 +13,7 @@ class Maven < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "635fa14bccc7862ffb9e884960965780a0c860fc9e73ebf63b54208e4b756037"
+    sha256 cellar: :any_skip_relocation, all: "b743ffc2719cb22b82c6eb8bdaef80f921714626be44d4867ef14adc13133366"
   end
 
   conflicts_with "mvnvm", because: "both install `mvn` executables"
