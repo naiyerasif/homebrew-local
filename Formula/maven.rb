@@ -1,9 +1,9 @@
 class Maven < Formula
   desc "Java-based project management"
   homepage "https://maven.apache.org/"
-  url "https://www.apache.org/dyn/closer.lua?path=maven/maven-3/3.10.0/binaries/apache-maven-3.10.0-bin.tar.gz"
-  mirror "https://archive.apache.org/dist/maven/maven-3/3.10.0/binaries/apache-maven-3.10.0-bin.tar.gz"
-  sha256 "a46cc51bc74fa23fd267c7a0b9132b146dcf526da60d31aa5174e565632e9e0e"
+  url "https://www.apache.org/dyn/closer.lua?path=maven/maven-3/3.10.2/binaries/apache-maven-3.10.2-bin.tar.gz"
+  mirror "https://archive.apache.org/dist/maven/maven-3/3.10.2/binaries/apache-maven-3.10.2-bin.tar.gz"
+  sha256 "8ba13121794243e604dbca50439f6ae649ce602675a167129556fd502947b249"
   license "Apache-2.0"
   compatibility_version 1
 
@@ -13,7 +13,8 @@ class Maven < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "4db96ce799e4e3fc07db18e44ddd21f7ee342e9ca412a12636c4efee0fbc87e5"
+    manifest_sha256 "75254a19d9856829c89b6e66e8983da2155eece19947aced00380e4b98d3ed5f"
+    sha256 cellar: :any_skip_relocation, all: "28fa9b035bb96598ea4c7299aa24f8f4c63f3636f6c37a24722d443281808abe"
   end
 
   conflicts_with "mvnvm", because: "both install `mvn` executables"
@@ -21,9 +22,6 @@ class Maven < Formula
   def install
     # Remove windows files
     rm(Dir["bin/*.cmd"])
-
-    # Native libraries remain available in the JLine JAR.
-    rm_r "lib/jline-native"
 
     # Fix the permissions on the global settings file.
     chmod 0644, "conf/settings.xml"
@@ -56,8 +54,7 @@ class Maven < Formula
         <artifactId>maven-test</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <properties>
-          <maven.compiler.source>25</maven.compiler.source>
-          <maven.compiler.target>25</maven.compiler.target>
+          <maven.compiler.release>25</maven.compiler.release>
           <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         </properties>
       </project>
@@ -65,10 +62,8 @@ class Maven < Formula
 
     (testpath/"src/main/java/org/homebrew/MavenTest.java").write <<~JAVA
       package org.homebrew;
-      public class MavenTest {
-        public static void main(String[] args) {
-          System.out.println("Testing Maven with Homebrew!");
-        }
+      void main() {
+        IO.println("Testing Maven with Homebrew!");
       }
     JAVA
 
